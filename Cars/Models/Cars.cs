@@ -1,25 +1,29 @@
 using System;
+using System.Collections.Generic;
 
-namespace Dealership {
 
-  class Car
+namespace Cars.Models
+{
+
+public class Car
   {
     private string _MakeModel;
     public int Price;
     public int Miles;
     private string _AboutCar;
 
-    private static List<car> _inventory = new List<car>{};
+    private static List<Car> _inventory = new List<Car> {};
 
-    public Car(string makeModel, int price, int miles,string aboutCar)
+    public Car (string makeModel, int price, int miles, string aboutCar)
     {
       _MakeModel = makeModel;
        Price = price;
        Miles = miles;
       _AboutCar = aboutCar;
+      _inventory.Add(this);
     }
 
-    private string GetMakeModel()
+    public string GetMakeModel()
     {
       return _MakeModel;
     }
@@ -33,9 +37,9 @@ namespace Dealership {
     {
       return Price;
     }
-    public void SetPrice(string maxPrice)
+    public void SetPrice(int maxPrice)
     {
-       _Price = maxPrice;
+       Price = maxPrice;
     }
 
 
@@ -43,9 +47,9 @@ namespace Dealership {
     {
       return Miles;
     }
-    public void SetMiles(string newMiles)
+    public void SetMiles(int newMiles)
     {
-       _Miles = newMiles;
+       Miles = newMiles;
     }
 
     private string GetAboutCar()
@@ -54,15 +58,19 @@ namespace Dealership {
     }
     public void SetAboutCar(string newinfo)
     {
-       _AboutCar = newInfo;
+       _AboutCar = newinfo;
     }
-    public void Save()
-    {
-      _inventory.Add(this);
-    }
-    public static List<car> GetAll()
+    // public void Save()
+    // {
+    //   _inventory.Add(this);
+    // }
+    public static List<Car> GetAll()
   {
     return _inventory;
+  }
+  public static void ClearAll()
+  {
+    _inventory.Clear();
   }
     public bool WorthBuying(int maxPrice)
     {

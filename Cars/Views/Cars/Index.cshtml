@@ -1,0 +1,17 @@
+@using Cars.Models;
+<h1>To Do List</h1>
+<ul>
+
+  @if (Model.Count == 0)
+{
+  <p>You have no cars in your inventory!</p>
+}
+@if(Model.Count != 0)
+{
+  @foreach (var car in Model)
+  {
+    <li>@car.GetAll()</li>
+  }
+}
+</ul>
+<a href="/cars/new">Add a new item.</a>
